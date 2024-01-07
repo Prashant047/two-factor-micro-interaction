@@ -87,13 +87,13 @@ OTPInput.Box = ({pos}:{pos:number}) => {
   const ref = useRef<HTMLInputElement>(null) 
   
   useEffect(() => {
-    const handler = () => {
-      ref.current?.focus();
+    if ("virtualKeyboard" in navigator) {
+      //@ts-ignore
+      navigator.virtualKeyboard.overlaysContent = true;
+      //@ts-ignore
+      navigator.virtualKeyboard.show();
     }
-    ref.current?.addEventListener('click', handler)
-    return () => {
-      ref.current?.removeEventListener('click', handler)
-    }
+
   },[]);
 
   const active = activeBox === pos;
@@ -101,12 +101,6 @@ OTPInput.Box = ({pos}:{pos:number}) => {
   
   return (
     <div className="relative w-7 h-9 bg-neutral-950 rounded-md">
-      {/* just to make mobile browser happy */}
-      <input 
-        ref={ref}
-        className='absolute opacity-0 h-full w-full top-0 bg-transparent border-0'
-      />
-      {/* --------------------------------- */}
       <div className="relative flex justify-center items-center h-full w-full overflow-hidden">
         {/* The Line */}
         {active?(
