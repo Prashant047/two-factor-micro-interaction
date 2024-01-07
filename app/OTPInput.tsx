@@ -87,13 +87,13 @@ OTPInput.Box = ({pos}:{pos:number}) => {
   const ref = useRef<HTMLInputElement>(null) 
   
   useEffect(() => {
-    // const handler = () => {
+    const handler = () => {
       ref.current?.focus();
-    // }
-    // ref.current?.addEventListener('click', handler)
-    // return () => {
-    //   ref.current?.removeEventListener('click', handler)
-    // }
+    }
+    ref.current?.addEventListener('click', handler)
+    return () => {
+      ref.current?.removeEventListener('click', handler)
+    }
   },[]);
 
   const active = activeBox === pos;
