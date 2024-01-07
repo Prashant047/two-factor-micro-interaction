@@ -84,6 +84,17 @@ export default function OTPInput({length = 4}: OTPInputProps){
 
 OTPInput.Box = ({pos}:{pos:number}) => {
   const {activeBox, done}  = useOTPInput();
+  const ref = useRef<HTMLInputElement>(null) 
+  
+  useEffect(() => {
+    // const handler = () => {
+      ref.current?.focus();
+    // }
+    // ref.current?.addEventListener('click', handler)
+    // return () => {
+    //   ref.current?.removeEventListener('click', handler)
+    // }
+  },[]);
 
   const active = activeBox === pos;
   const hasValue = activeBox > pos;
@@ -92,6 +103,7 @@ OTPInput.Box = ({pos}:{pos:number}) => {
     <div className="relative w-7 h-9 bg-neutral-950 rounded-md">
       {/* just to make mobile browser happy */}
       <input 
+        ref={ref}
         className='fixed hidden inset-0 top-0 bg-transparent border-0'
       />
       {/* --------------------------------- */}
