@@ -104,7 +104,7 @@ OTPInput.Box = ({pos}:{pos:number}) => {
       {/* just to make mobile browser happy */}
       <input 
         ref={ref}
-        className='fixed hidden inset-0 top-0 bg-transparent border-0'
+        className='fixed opacity-0 inset-0 top-0 bg-transparent border-0'
       />
       {/* --------------------------------- */}
       <div className="relative flex justify-center items-center h-full w-full overflow-hidden">
