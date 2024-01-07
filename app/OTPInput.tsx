@@ -84,17 +84,6 @@ export default function OTPInput({length = 4}: OTPInputProps){
 
 OTPInput.Box = ({pos}:{pos:number}) => {
   const {activeBox, done}  = useOTPInput();
-  const ref = useRef<HTMLInputElement>(null) 
-  
-  useEffect(() => {
-    if ("virtualKeyboard" in navigator) {
-      //@ts-ignore
-      navigator.virtualKeyboard.overlaysContent = true;
-      //@ts-ignore
-      navigator.virtualKeyboard.show();
-    }
-
-  },[]);
 
   const active = activeBox === pos;
   const hasValue = activeBox > pos;
